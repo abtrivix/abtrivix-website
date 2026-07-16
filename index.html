@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abtrivix - Premium Sports Trivia & Gaming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0B0F19;
+            --card-bg: #151D30;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --primary-gold: #F59E0B;
+            --accent-cyan: #06B6D4;
+            --glow-gold: rgba(245, 158, 11, 0.15);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Background grid effect */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Navigation Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 15, 25, 0.8);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid var(--primary-gold);
+            box-shadow: 0 0 15px var(--glow-gold);
+        }
+
+        .logo-fallback {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary-gold), #D97706);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 0 15px var(--glow-gold);
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #FFF, #CBD5E1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 24px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 5% 60px 5%;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin: 0;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #FFF 40%, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 800px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 24px 0 40px 0;
+        }
+
+        .hero-btn {
+            background: linear-gradient(135deg, var(--primary-gold), #D97706);
+            color: #0B0F19;
+            padding: 14px 36px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.5);
+        }
+
+        /* Section Container */
+        .section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-gold);
+            margin: 12px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(245, 158, 11, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(245, 158, 11, 0.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: 24px; right: 24px;
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--primary-gold);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .game-icon {
+            font-size: 44px;
+            margin-bottom: 20px;
+        }
+
+        .game-card h3 {
+            font-size: 1.6rem;
+            margin: 0 0 12px 0;
+            color: #FFF;
+        }
+
+        .game-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #090C14;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            font-size: 20px;
+            color: #FFF;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            header {
+                padding: 15px 5%;
+            }
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links {
+                margin-top: 10px;
+            }
+            .footer-links a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <header>
+        <div class="logo-section">
+            <!-- Tries to render logo.png, falls back to styled 🎮 icon if image doesn't exist -->
+            <img class="logo-img" src="logo.png" alt="Abtrivix" onerror="this.style.display='none'; document.getElementById('fallback').style.display='flex'">
+            <div id="fallback" class="logo-fallback" style="display: none;">🎮</div>
+            <span class="brand-name">ABTRIVIX</span>
+        </div>
+        <div class="nav-links">
+            <a href="#games">Games</a>
+            <a href="privacy/">Privacy</a>
+        </div>
+    </header>
+
+    <!-- Hero Area -->
+    <section class="hero">
+        <h1>Unleash Your Sports Brainpower</h1>
+        <p>Abtrivix designs premium sports trivia and guessing games for passionate fans. Test your instincts, build daily streaks, and challenge friends.</p>
+        <a href="#games" class="hero-btn">Explore Games</a>
+    </section>
+
+    <!-- Games Section -->
+    <section class="section" id="games">
+        <h2 class="section-title">Our Game Portfolio</h2>
+        <div class="games-grid">
+            
+            <!-- Game 1: IPL Guess -->
+            <div class="game-card">
+                <span class="badge">COMING SOON</span>
+                <div class="game-icon">🏏</div>
+                <h3>IPL Guess</h3>
+                <p>A premium Wordle-style guessing game for cricket enthusiasts. Identify the secret player from historical stats, nationality, role, and clues.</p>
+            </div>
+
+            <!-- Game 2: Football Guess -->
+            <div class="game-card">
+                <span class="badge">COMING SOON</span>
+                <div class="game-icon">⚽</div>
+                <h3>Football Guess</h3>
+                <p>The ultimate daily trivia challenge for soccer fans. Decode players using Evolutionary League filters, shirt numbers, age, and stats.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="copyright">
+            &copy; <span id="year">2026</span> Abtrivix. All rights reserved.
+        </div>
+        <div class="footer-links">
+            <a href="privacy/">Privacy Policy</a>
+            <a href="terms/">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

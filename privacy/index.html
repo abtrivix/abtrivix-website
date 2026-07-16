@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Abtrivix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0B0F19;
+            --card-bg: #151D30;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --primary-gold: #F59E0B;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 60px 8%;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #FFF, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            margin-top: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #FFF;
+            margin-top: 24px;
+        }
+
+        p, li {
+            color: #CBD5E1;
+            font-size: 1.1rem;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 50px;
+            color: var(--text-muted);
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 24px;
+            border-radius: 12px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #FFF;
+            border-color: var(--primary-gold);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Privacy Policy</h1>
+    <div class="last-updated">Last Updated: June 2026</div>
+
+    <p>Abtrivix ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy describes how we collect, use, and share information when you play our mobile games and applications (collectively, the "Services").</p>
+
+    <p>By playing our games, you agree to the collection and use of information in accordance with this policy.</p>
+
+    <h2>1. Information We Collect</h2>
+
+    <h3>A. Local Storage & Account Data</h3>
+    <p>Our games operate on a <strong>server-less, local-first architecture</strong>. We do not require or collect personal accounts, emails, phone numbers, or passwords.</p>
+    <ul>
+        <li><strong>Local Profiles</strong>: Any nickname, game stats, high scores, coin balances, streaks, or game board states are stored locally on your device using `SharedPreferences`.</li>
+        <li><strong>No Server Collection</strong>: This data is never sent to our servers.</li>
+    </ul>
+
+    <h3>B. Peer-to-Peer (P2P) Local Multiplayer</h3>
+    <p>When using multiplayer modes (VS Player / Party Mode):</p>
+    <ul>
+        <li><strong>Local Discovery</strong>: The app utilizes Wi-Fi multicast and local TCP sockets to discover and connect with other devices on the same local network.</li>
+        <li><strong>No Internet Relays</strong>: We do not transmit gameplay data over the internet or host multiplayer sessions on remote servers.</li>
+    </ul>
+
+    <h3>C. Advertising & Device Identifiers (Third-Party Collection)</h3>
+    <p>To support our free games, we integrate Google AdMob for advertising.</p>
+    <ul>
+        <li><strong>Identifiers Collected</strong>: Google AdMob may collect and use device identifiers (such as the Android Advertising ID or Google Advertising ID) and IP addresses to serve personalized or non-personalized advertisements, track ad performance, and prevent fraud.</li>
+        <li><strong>Third-Party Policies</strong>: For more information on how Google collects and uses your data, please review the <a href="https://policies.google.com/privacy" target="_blank">Google Privacy & Terms</a>.</li>
+    </ul>
+
+    <h2>2. Device Permissions We Request</h2>
+    <p>To provide gameplay features, our apps request:</p>
+    <ul>
+        <li><strong>Internet Access (INTERNET)</strong>: Required for loading AdMob ads.</li>
+        <li><strong>Local Network Access (CHANGE_WIFI_MULTICAST_STATE, ACCESS_WIFI_STATE, ACCESS_FINE_LOCATION)</strong>: Required for peer-to-peer device discovery in local multiplayer modes.</li>
+        <li><strong>Notifications (POST_NOTIFICATIONS)</strong>: Required to schedule local reminders (e.g., daily puzzle reset).</li>
+    </ul>
+
+    <h2>3. Children's Privacy</h2>
+    <p>Our games are designed for general audiences. We do not knowingly collect personal identification information from children. If Google AdMob serves ads in our apps, it complies with COPPA (Children's Online Privacy Protection Act) requirements by serving context-appropriate ads where necessary.</p>
+
+    <h2>4. Changes to This Privacy Policy</h2>
+    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+
+    <h2>5. Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy, please contact us:</p>
+    <ul>
+        <li><strong>Email</strong>: contact@abtrivix.com</li>
+        <li><strong>Website</strong>: <a href="https://abtrivix.com">https://abtrivix.com</a></li>
+    </ul>
+
+    <a href="../" class="back-btn">&larr; Back to Home</a>
+</body>
+</html>

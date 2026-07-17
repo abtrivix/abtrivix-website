@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abtrivix - Premium Sports Trivia & Gaming</title>
+    <title>Abtrivix - Next-Gen Gaming & Puzzles</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0B0F19;
-            --card-bg: #151D30;
+            --bg-color: #080B11;
+            --card-bg: #111622;
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
+            --primary-purple: #a855f7;
+            --accent-cyan: #06b6d4;
             --primary-gold: #F59E0B;
-            --accent-cyan: #06B6D4;
-            --glow-gold: rgba(245, 158, 11, 0.15);
+            --glow-color: rgba(168, 85, 247, 0.25);
         }
 
         body {
@@ -26,14 +27,14 @@
             line-height: 1.6;
         }
 
-        /* Background grid effect */
+        /* Ambient glowing background */
         .bg-grid {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 45%);
             z-index: -1;
         }
 
@@ -43,12 +44,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(11, 15, 25, 0.8);
+            background: rgba(8, 11, 17, 0.85);
         }
 
         .logo-section {
@@ -58,31 +59,31 @@
         }
 
         .logo-img {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
             object-fit: cover;
-            border: 2px solid var(--primary-gold);
-            box-shadow: 0 0 15px var(--glow-gold);
+            border: 2px solid var(--primary-purple);
+            box-shadow: 0 0 15px var(--glow-color);
         }
 
         .logo-fallback {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--primary-gold), #D97706);
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-cyan));
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 22px;
-            box-shadow: 0 0 15px var(--glow-gold);
+            box-shadow: 0 0 15px var(--glow-color);
         }
 
         .brand-name {
             font-size: 24px;
             font-weight: 800;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, #FFF, #CBD5E1);
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #FFF, #94A3B8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -96,7 +97,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--primary-gold);
+            color: var(--accent-cyan);
         }
 
         /* Hero Section */
@@ -106,7 +107,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 100px 5% 60px 5%;
+            padding: 80px 5% 40px 5%;
             position: relative;
         }
 
@@ -114,8 +115,8 @@
             font-size: 3.8rem;
             font-weight: 800;
             margin: 0;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #FFF 40%, var(--primary-gold));
+            line-height: 1.15;
+            background: linear-gradient(135deg, #FFF 30%, var(--accent-cyan), var(--primary-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             max-width: 800px;
@@ -123,26 +124,29 @@
 
         .hero p {
             color: var(--text-muted);
-            font-size: 1.3rem;
-            max-width: 600px;
-            margin: 24px 0 40px 0;
+            font-size: 1.25rem;
+            max-width: 650px;
+            margin: 20px 0 35px 0;
         }
 
-        .hero-btn {
-            background: linear-gradient(135deg, var(--primary-gold), #D97706);
-            color: #0B0F19;
-            padding: 14px 36px;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
+        /* Banner Container in Hero */
+        .banner-container {
+            max-width: 900px;
+            width: 90%;
+            margin-top: 40px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(6, 182, 212, 0.1);
+            position: relative;
+            aspect-ratio: 1.9 / 1;
         }
 
-        .hero-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.5);
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         /* Section Container */
@@ -152,18 +156,21 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 800;
             margin-bottom: 50px;
             position: relative;
+            background: linear-gradient(135deg, #FFF, #94A3B8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-gold);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
             margin: 12px auto 0 auto;
             border-radius: 2px;
         }
@@ -173,17 +180,19 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .game-card {
             background-color: var(--card-bg);
             border-radius: 24px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
             transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
@@ -192,62 +201,58 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.08) 0%, transparent 60%);
+            background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.06) 0%, transparent 60%);
             pointer-events: none;
         }
 
         .game-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(245, 158, 11, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(245, 158, 11, 0.05);
+            border-color: rgba(6, 182, 212, 0.25);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(168, 85, 247, 0.05);
         }
 
         .badge {
             position: absolute;
             top: 24px; right: 24px;
-            background-color: rgba(245, 158, 11, 0.1);
-            color: var(--primary-gold);
+            background-color: rgba(168, 85, 247, 0.1);
+            color: #d8b4fe;
             padding: 6px 14px;
             border-radius: 50px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(245, 158, 11, 0.2);
+            letter-spacing: 0.8px;
+            border: 1px solid rgba(168, 85, 247, 0.25);
         }
 
         .game-icon {
-            font-size: 44px;
-            margin-bottom: 20px;
+            font-size: 46px;
+            margin-bottom: 24px;
         }
 
         .game-card h3 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin: 0 0 12px 0;
             color: #FFF;
+            font-weight: 700;
         }
 
         .game-card p {
             color: var(--text-muted);
             font-size: 1rem;
-            margin-bottom: 20px;
+            margin: 0;
+            line-height: 1.6;
         }
 
         /* Footer */
         footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
             padding: 40px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #090C14;
+            background-color: #06080D;
             flex-wrap: wrap;
             gap: 20px;
-        }
-
-        .footer-logo {
-            font-weight: 800;
-            font-size: 20px;
-            color: #FFF;
         }
 
         .copyright {
@@ -259,17 +264,17 @@
             color: var(--text-muted);
             text-decoration: none;
             font-size: 14px;
-            margin-left: 20px;
+            margin-left: 24px;
             transition: color 0.3s;
         }
 
         .footer-links a:hover {
-            color: var(--primary-gold);
+            color: var(--accent-cyan);
         }
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.6rem;
+                font-size: 2.5rem;
             }
             header {
                 padding: 15px 5%;
@@ -293,43 +298,62 @@
     <!-- Navigation -->
     <header>
         <div class="logo-section">
-            <!-- Tries to render logo.png, falls back to styled 🎮 icon if image doesn't exist -->
             <img class="logo-img" src="logo.png" alt="Abtrivix" onerror="this.style.display='none'; document.getElementById('fallback').style.display='flex'">
             <div id="fallback" class="logo-fallback" style="display: none;">🎮</div>
             <span class="brand-name">ABTRIVIX</span>
         </div>
         <div class="nav-links">
-            <a href="#games">Games</a>
-            <a href="privacy/">Privacy</a>
+            <a href="#portfolio">Our Games</a>
+            <a href="privacy/">Privacy Policy</a>
         </div>
     </header>
 
     <!-- Hero Area -->
     <section class="hero">
-        <h1>Unleash Your Sports Brainpower</h1>
-        <p>Abtrivix designs premium sports trivia and guessing games for passionate fans. Test your instincts, build daily streaks, and challenge friends.</p>
-        <a href="#games" class="hero-btn">Explore Games</a>
+        <h1>Next-Gen Gaming & Puzzles</h1>
+        <p>Abtrivix designs premium interactive puzzles, strategic card challenges, and immersive mobile games. We challenge your instincts and train your brainpower.</p>
+        
+        <!-- Showcase Official Banner -->
+        <div class="banner-container">
+            <img class="banner-img" src="banner.jpg" alt="Abtrivix Gaming Universe">
+        </div>
     </section>
 
-    <!-- Games Section -->
-    <section class="section" id="games">
-        <h2 class="section-title">Our Game Portfolio</h2>
+    <!-- Portfolio Section -->
+    <section class="section" id="portfolio">
+        <h2 class="section-title">Abtrivix Universe</h2>
         <div class="games-grid">
             
-            <!-- Game 1: IPL Guess -->
+            <!-- Game 1: WormGo -->
             <div class="game-card">
                 <span class="badge">COMING SOON</span>
-                <div class="game-icon">🏏</div>
-                <h3>IPL Guess</h3>
-                <p>A premium Wordle-style guessing game for cricket enthusiasts. Identify the secret player from historical stats, nationality, role, and clues.</p>
+                <div class="game-icon">🐛</div>
+                <h3>WormGo</h3>
+                <p>Navigate complex mazes and guide your character through dynamic pathways. A precision-based arcade puzzle game inspired by action-routing mechanics.</p>
             </div>
 
-            <!-- Game 2: Football Guess -->
+            <!-- Game 2: Sudoku Multimode -->
             <div class="game-card">
                 <span class="badge">COMING SOON</span>
-                <div class="game-icon">⚽</div>
-                <h3>Football Guess</h3>
-                <p>The ultimate daily trivia challenge for soccer fans. Decode players using Evolutionary League filters, shirt numbers, age, and stats.</p>
+                <div class="game-icon">🔢</div>
+                <h3>Sudoku Multimode</h3>
+                <p>The ultimate daily logic trainer. Experience multiple grid variations, classic puzzles, custom themes, and competitive logic challenges.</p>
+            </div>
+
+            <!-- Game 3: Gravity Puzzle -->
+            <div class="game-card">
+                <span class="badge">COMING SOON</span>
+                <div class="game-icon">🌌</div>
+                <h3>Gravity Puzzle</h3>
+                <p>Control elements, manipulate gravity fields, and interact with physics nodes to solve mind-bending three-dimensional spatial puzzles.</p>
+            </div>
+
+            <!-- Game 4: Sports Guessing Series -->
+            <div class="game-card">
+                <span class="badge">COMING SOON</span>
+                <div class="game-icon">🏆</div>
+                <h3>Sports Trivia Series</h3>
+                <p>Our dedicated series of trivia and sports guessing games, including cricket and football stats deduction boards, featuring local peer-to-peer multiplayer modes.</p>
             </div>
 
         </div>

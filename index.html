@@ -3,375 +3,786 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abtrivix - Next-Gen Gaming & Puzzles</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#080B11">
+    <meta name="description" content="Abtrivix builds next-gen mobile games, brain-bending puzzles and strategic trivia — server-less, local-first, and beautifully crafted.">
+    <meta property="og:title" content="Abtrivix — Next-Gen Gaming & Puzzles">
+    <meta property="og:description" content="Premium interactive puzzles, strategic challenges and immersive mobile games.">
+    <meta property="og:image" content="banner.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abtrivix.com">
+    <title>Abtrivix — Next-Gen Gaming & Puzzles</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #080B11;
-            --card-bg: #111622;
-            --text-main: #F8FAFC;
-            --text-muted: #94A3B8;
-            --primary-purple: #a855f7;
-            --accent-cyan: #06b6d4;
-            --primary-gold: #F59E0B;
-            --glow-color: rgba(168, 85, 247, 0.25);
+            --bg: #070910;
+            --bg-2: #0a0e18;
+            --card-bg: rgba(20, 26, 42, 0.55);
+            --text-main: #F1F5FB;
+            --text-muted: #9aa7bd;
+            --purple: #a855f7;
+            --cyan: #22d3ee;
+            --pink: #ec4899;
+            --blue: #6366f1;
+            --glow: rgba(168, 85, 247, 0.35);
+            --grad: linear-gradient(120deg, var(--purple), var(--blue) 45%, var(--cyan));
+            --edge: rgba(255, 255, 255, 0.08);
         }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
-            padding: 0;
             font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-color);
+            background: var(--bg);
             color: var(--text-main);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Ambient glowing background */
-        .bg-grid {
-            position: fixed;
-            top: 0; left: 0;
+        ::selection { background: rgba(168, 85, 247, 0.35); color: #fff; }
+
+        a { color: inherit; }
+
+        /* ===== Animated backdrop ===== */
+        #stars {
+            position: fixed; inset: 0;
             width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 45%),
-                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 45%);
-            z-index: -1;
-        }
-
-        /* Navigation Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(8, 11, 17, 0.85);
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-img {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 2px solid var(--primary-purple);
-            box-shadow: 0 0 15px var(--glow-color);
-        }
-
-        .logo-fallback {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--primary-purple), var(--accent-cyan));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 0 15px var(--glow-color);
-        }
-
-        .brand-name {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            background: linear-gradient(135deg, #FFF, #94A3B8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 24px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-cyan);
-        }
-
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 5% 40px 5%;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            margin: 0;
-            line-height: 1.15;
-            background: linear-gradient(135deg, #FFF 30%, var(--accent-cyan), var(--primary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            max-width: 800px;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.25rem;
-            max-width: 650px;
-            margin: 20px 0 35px 0;
-        }
-
-        /* Banner Container in Hero */
-        .banner-container {
-            max-width: 900px;
-            width: 90%;
-            margin-top: 40px;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(6, 182, 212, 0.1);
-            position: relative;
-            aspect-ratio: 1.9 / 1;
-        }
-
-        .banner-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            z-index: -3;
             display: block;
         }
 
-        /* Section Container */
-        .section {
-            padding: 80px 8%;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.4rem;
-            font-weight: 800;
-            margin-bottom: 50px;
-            position: relative;
-            background: linear-gradient(135deg, #FFF, #94A3B8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
-            margin: 12px auto 0 auto;
-            border-radius: 2px;
-        }
-
-        /* Games Grid */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .game-card {
-            background-color: var(--card-bg);
-            border-radius: 24px;
-            padding: 35px;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            position: relative;
+        .bg-orbs {
+            position: fixed; inset: 0;
+            z-index: -2;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            pointer-events: none;
         }
-
-        .game-card::before {
-            content: '';
+        .orb {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.06) 0%, transparent 60%);
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: float 18s ease-in-out infinite;
+        }
+        .orb.a { width: 520px; height: 520px; top: -140px; left: -120px;
+            background: radial-gradient(circle, rgba(168,85,247,0.55), transparent 70%); }
+        .orb.b { width: 480px; height: 480px; top: 30%; right: -160px;
+            background: radial-gradient(circle, rgba(34,211,238,0.45), transparent 70%);
+            animation-delay: -6s; }
+        .orb.c { width: 460px; height: 460px; bottom: -160px; left: 25%;
+            background: radial-gradient(circle, rgba(99,102,241,0.4), transparent 70%);
+            animation-delay: -11s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -30px) scale(1.08); }
+            66% { transform: translate(-30px, 25px) scale(0.95); }
+        }
+
+        .bg-grid {
+            position: fixed; inset: 0;
+            z-index: -2;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
             pointer-events: none;
         }
 
+        /* ===== Layout helpers ===== */
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 6vw; }
+
+        /* ===== Nav ===== */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            background: rgba(7, 9, 16, 0.72);
+            border-bottom: 1px solid transparent;
+            transition: border-color .3s, background .3s;
+        }
+        header.scrolled {
+            border-bottom: 1px solid var(--edge);
+            background: rgba(7, 9, 16, 0.9);
+        }
+        .nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 0;
+        }
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-img {
+            width: 46px; height: 46px; border-radius: 13px; object-fit: cover;
+            border: 1px solid rgba(168,85,247,0.5);
+            box-shadow: 0 0 22px var(--glow);
+            transition: transform .4s;
+        }
+        .brand:hover .logo-img { transform: rotate(-8deg) scale(1.05); }
+        .logo-fallback {
+            width: 46px; height: 46px; border-radius: 13px;
+            display: none; align-items: center; justify-content: center;
+            font-size: 24px; background: var(--grad);
+            box-shadow: 0 0 22px var(--glow);
+        }
+        .brand-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.55rem; font-weight: 700; letter-spacing: 2.5px;
+            background: linear-gradient(100deg, #c026d3, #a855f7 30%, #6366f1 62%, #22d3ee);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 14px rgba(168,85,247,0.35));
+        }
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-links a {
+            color: var(--text-muted); text-decoration: none; font-weight: 600;
+            font-size: 0.98rem; position: relative; transition: color .3s;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; left: 0; bottom: -6px;
+            width: 0; height: 2px; border-radius: 2px;
+            background: var(--grad); transition: width .3s;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a:hover::after { width: 100%; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 9px;
+            font-weight: 700; font-size: 0.95rem; text-decoration: none;
+            padding: 12px 24px; border-radius: 14px; cursor: pointer;
+            border: none; transition: transform .25s, box-shadow .3s, background .3s;
+        }
+        .btn-primary {
+            color: #fff; background: var(--grad); background-size: 180% 180%;
+            box-shadow: 0 10px 30px rgba(129,80,247,0.35);
+            animation: gradShift 6s ease infinite;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(129,80,247,0.5); }
+        .btn-ghost {
+            color: #fff; background: rgba(255,255,255,0.04);
+            border: 1px solid var(--edge);
+        }
+        .btn-ghost:hover { transform: translateY(-3px); border-color: rgba(34,211,238,0.5); background: rgba(34,211,238,0.08); }
+
+        @keyframes gradShift {
+            0%,100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .nav-cta { display: flex; align-items: center; gap: 18px; }
+
+        .hamburger {
+            display: none; flex-direction: column; gap: 5px; cursor: pointer;
+            background: none; border: none; padding: 8px;
+        }
+        .hamburger span {
+            width: 26px; height: 2px; background: #fff; border-radius: 2px;
+            transition: transform .3s, opacity .3s;
+        }
+
+        /* ===== Hero ===== */
+        .hero { position: relative; text-align: center; padding: clamp(60px, 10vw, 120px) 0 40px; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 9px;
+            padding: 8px 18px; border-radius: 50px;
+            background: rgba(168,85,247,0.08);
+            border: 1px solid rgba(168,85,247,0.25);
+            font-size: 0.82rem; font-weight: 600; letter-spacing: 1px;
+            color: #d8b4fe; text-transform: uppercase; margin-bottom: 28px;
+        }
+        .eyebrow .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--cyan); box-shadow: 0 0 10px var(--cyan);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+        .hero h1 {
+            font-size: clamp(2.6rem, 7vw, 5rem);
+            font-weight: 900; line-height: 1.05; margin: 0 auto;
+            max-width: 15ch; letter-spacing: -1.5px;
+        }
+        .hero h1 .glow-word {
+            background: linear-gradient(120deg, var(--cyan), var(--purple) 60%, var(--pink));
+            background-size: 200% auto;
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 5s linear infinite;
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+        .hero p {
+            color: var(--text-muted); font-size: clamp(1.05rem, 2.3vw, 1.3rem);
+            max-width: 620px; margin: 26px auto 38px;
+        }
+        .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        /* Banner */
+        .banner-wrap {
+            position: relative; max-width: 940px; margin: clamp(50px, 8vw, 90px) auto 0;
+            border-radius: 26px; padding: 1.5px;
+            background: linear-gradient(130deg, rgba(168,85,247,0.6), rgba(34,211,238,0.5), rgba(99,102,241,0.4));
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 60px rgba(129,80,247,0.18);
+            animation: floatSlow 7s ease-in-out infinite;
+        }
+        @keyframes floatSlow {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-14px); }
+        }
+        .banner-inner {
+            position: relative; border-radius: 25px; overflow: hidden;
+            aspect-ratio: 1024 / 573; background: #05070d;
+        }
+        .banner-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .banner-inner::after {
+            content: ''; position: absolute; top: 0; left: -60%;
+            width: 40%; height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,0.16), transparent);
+            transform: skewX(-18deg);
+            animation: sweep 5.5s ease-in-out infinite;
+        }
+        @keyframes sweep {
+            0% { left: -60%; } 55%,100% { left: 130%; }
+        }
+
+        /* Marquee */
+        .marquee {
+            margin-top: 70px; overflow: hidden;
+            border-top: 1px solid var(--edge); border-bottom: 1px solid var(--edge);
+            padding: 18px 0;
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+        }
+        .marquee-track {
+            display: flex; gap: 60px; width: max-content;
+            animation: scroll 26s linear infinite;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+            font-size: 1.05rem; color: var(--text-muted); white-space: nowrap;
+        }
+        .marquee-track span { display: inline-flex; align-items: center; gap: 14px; }
+        .marquee-track span::before { content: '✦'; color: var(--purple); }
+        @keyframes scroll { to { transform: translateX(-50%); } }
+
+        /* ===== Sections ===== */
+        section.block { padding: clamp(70px, 11vw, 120px) 0; position: relative; }
+        .section-head { text-align: center; max-width: 640px; margin: 0 auto 60px; }
+        .section-head .tag {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem;
+            color: var(--cyan);
+        }
+        .section-head h2 {
+            font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 14px 0 12px;
+            letter-spacing: -1px;
+            background: linear-gradient(120deg, #fff, #a5b4fc);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-head p { color: var(--text-muted); font-size: 1.08rem; margin: 0; }
+
+        /* Stats */
+        .stats {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 18px; max-width: 940px; margin: 0 auto;
+        }
+        .stat {
+            text-align: center; padding: 30px 16px; border-radius: 20px;
+            background: var(--card-bg); border: 1px solid var(--edge);
+            backdrop-filter: blur(10px);
+        }
+        .stat .num {
+            font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 900;
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--grad); -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat .lbl { color: var(--text-muted); font-size: 0.9rem; margin-top: 6px; letter-spacing: .5px; }
+
+        /* Games grid */
+        .games-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 26px; max-width: 1200px; margin: 0 auto;
+        }
+        .game-card {
+            position: relative; border-radius: 24px; padding: 34px;
+            background: var(--card-bg); border: 1px solid var(--edge);
+            backdrop-filter: blur(12px);
+            overflow: hidden; transition: transform .3s ease, box-shadow .3s;
+            transform-style: preserve-3d; will-change: transform;
+        }
+        .game-card::before {
+            content: ''; position: absolute; inset: 0; border-radius: 24px;
+            padding: 1px; background: conic-gradient(from var(--a, 0deg), transparent 40%, var(--purple), var(--cyan), transparent 70%);
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            opacity: 0; transition: opacity .4s;
+        }
+        .game-card:hover::before { opacity: 1; animation: spin 4s linear infinite; }
+        @keyframes spin { to { --a: 360deg; } }
+        @property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
         .game-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(6, 182, 212, 0.25);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(168, 85, 247, 0.05);
+            box-shadow: 0 24px 50px rgba(0,0,0,0.5), 0 0 40px rgba(129,80,247,0.15);
         }
-
         .badge {
-            position: absolute;
-            top: 24px; right: 24px;
-            background-color: rgba(168, 85, 247, 0.1);
-            color: #d8b4fe;
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            border: 1px solid rgba(168, 85, 247, 0.25);
+            position: absolute; top: 22px; right: 22px;
+            background: rgba(34,211,238,0.1); color: #a5f3fc;
+            padding: 6px 13px; border-radius: 50px; font-size: 10.5px;
+            font-weight: 700; letter-spacing: 1px;
+            border: 1px solid rgba(34,211,238,0.28);
         }
-
         .game-icon {
-            font-size: 46px;
-            margin-bottom: 24px;
+            width: 66px; height: 66px; border-radius: 18px; margin-bottom: 22px;
+            display: flex; align-items: center; justify-content: center; font-size: 34px;
+            background: linear-gradient(135deg, rgba(168,85,247,0.18), rgba(34,211,238,0.12));
+            border: 1px solid var(--edge);
         }
+        .game-card h3 { font-size: 1.4rem; margin: 0 0 10px; font-weight: 700; }
+        .game-card p { color: var(--text-muted); font-size: 0.98rem; margin: 0; }
 
-        .game-card h3 {
-            font-size: 1.5rem;
-            margin: 0 0 12px 0;
-            color: #FFF;
-            font-weight: 700;
+        /* Features */
+        .features {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px; max-width: 1080px; margin: 0 auto;
         }
+        .feature {
+            padding: 30px; border-radius: 22px;
+            background: var(--card-bg); border: 1px solid var(--edge);
+            backdrop-filter: blur(10px); transition: transform .3s, border-color .3s;
+        }
+        .feature:hover { transform: translateY(-6px); border-color: rgba(168,85,247,0.35); }
+        .feature .ficon {
+            width: 52px; height: 52px; border-radius: 14px; margin-bottom: 18px;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            box-shadow: 0 8px 22px rgba(129,80,247,0.3);
+        }
+        .feature h4 { margin: 0 0 8px; font-size: 1.2rem; }
+        .feature p { margin: 0; color: var(--text-muted); font-size: 0.96rem; }
 
-        .game-card p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin: 0;
-            line-height: 1.6;
+        /* Social CTA */
+        .social-cta {
+            position: relative; max-width: 1000px; margin: 0 auto;
+            text-align: center; padding: clamp(50px, 8vw, 80px) 6vw;
+            border-radius: 32px; overflow: hidden;
+            background: linear-gradient(135deg, rgba(168,85,247,0.14), rgba(34,211,238,0.09));
+            border: 1px solid var(--edge);
+        }
+        .social-cta::before {
+            content: ''; position: absolute; inset: 0; z-index: -1;
+            background: radial-gradient(circle at 20% 20%, rgba(168,85,247,0.25), transparent 55%),
+                        radial-gradient(circle at 80% 80%, rgba(34,211,238,0.2), transparent 55%);
+        }
+        .social-cta h2 {
+            font-size: clamp(1.9rem, 4.5vw, 2.8rem); font-weight: 800; margin: 0 0 12px;
+            letter-spacing: -1px;
+        }
+        .social-cta p { color: var(--text-muted); max-width: 480px; margin: 0 auto 34px; }
+        .social-row { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+        .social-btn {
+            width: 60px; height: 60px; border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--edge);
+            color: #fff; transition: transform .3s, background .3s, box-shadow .3s, border-color .3s;
+        }
+        .social-btn svg { width: 26px; height: 26px; fill: currentColor; }
+        .social-btn:hover { transform: translateY(-6px) scale(1.06); }
+        .social-btn.fb:hover { background: #1877F2; border-color: #1877F2; box-shadow: 0 12px 30px rgba(24,119,242,0.5); }
+        .social-btn.yt:hover { background: #FF0000; border-color: #FF0000; box-shadow: 0 12px 30px rgba(255,0,0,0.45); }
+        .social-btn.x:hover { background: #000; border-color: #fff; box-shadow: 0 12px 30px rgba(255,255,255,0.25); }
+        .social-btn.ig:hover {
+            background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+            border-color: transparent; box-shadow: 0 12px 30px rgba(220,39,67,0.5);
         }
 
         /* Footer */
         footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 40px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #06080D;
-            flex-wrap: wrap;
-            gap: 20px;
+            border-top: 1px solid var(--edge);
+            padding: 60px 0 30px; margin-top: 40px;
+            background: rgba(5, 7, 12, 0.6);
+        }
+        .footer-grid {
+            display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;
+            padding-bottom: 40px; border-bottom: 1px solid var(--edge);
+        }
+        .footer-brand { max-width: 320px; }
+        .footer-brand .brand { margin-bottom: 16px; }
+        .footer-brand p { color: var(--text-muted); font-size: 0.95rem; margin: 0 0 20px; }
+        .footer-socials { display: flex; gap: 12px; }
+        .footer-socials a {
+            width: 42px; height: 42px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.04); border: 1px solid var(--edge);
+            color: var(--text-muted); transition: color .3s, transform .3s, border-color .3s;
+        }
+        .footer-socials a svg { width: 19px; height: 19px; fill: currentColor; }
+        .footer-socials a:hover { color: #fff; transform: translateY(-3px); border-color: var(--purple); }
+        .footer-col h5 {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--text-muted); margin: 0 0 18px; font-weight: 700;
+        }
+        .footer-col a {
+            display: block; color: var(--text-muted); text-decoration: none;
+            font-size: 0.95rem; margin-bottom: 12px; transition: color .3s;
+        }
+        .footer-col a:hover { color: var(--cyan); }
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px; padding-top: 26px;
+            color: var(--text-muted); font-size: 0.88rem;
         }
 
-        .copyright {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
+        /* Reveal animation */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.show { opacity: 1; transform: none; }
 
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            margin-left: 24px;
-            transition: color 0.3s;
+        /* Responsive */
+        @media (max-width: 860px) {
+            .nav-links, .nav-cta .btn-ghost { display: none; }
+            .hamburger { display: flex; }
+            .mobile-menu {
+                position: fixed; inset: 0; z-index: 200;
+                background: rgba(7,9,16,0.97); backdrop-filter: blur(20px);
+                display: flex; flex-direction: column; align-items: center; justify-content: center;
+                gap: 30px; opacity: 0; pointer-events: none; transition: opacity .35s;
+            }
+            .mobile-menu.open { opacity: 1; pointer-events: auto; }
+            .mobile-menu a { color: #fff; font-size: 1.4rem; font-weight: 700; text-decoration: none; }
+            .mobile-close {
+                position: absolute; top: 24px; right: 28px; font-size: 2rem;
+                color: #fff; background: none; border: none; cursor: pointer;
+            }
+            .mobile-social { display: flex; gap: 16px; margin-top: 20px; }
+            .mobile-social a { color: var(--text-muted); }
+            .mobile-social svg { width: 26px; height: 26px; fill: currentColor; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { flex-direction: column; }
         }
+        @media (min-width: 861px) { .mobile-menu { display: none; } }
 
-        .footer-links a:hover {
-            color: var(--accent-cyan);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            header {
-                padding: 15px 5%;
-            }
-            footer {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer-links {
-                margin-top: 10px;
-            }
-            .footer-links a {
-                margin: 0 10px;
-            }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal { opacity: 1; transform: none; }
         }
     </style>
 </head>
 <body>
+    <canvas id="stars"></canvas>
+    <div class="bg-orbs"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
     <div class="bg-grid"></div>
 
-    <!-- Navigation -->
-    <header>
-        <div class="logo-section">
-            <img class="logo-img" src="logo.png" alt="Abtrivix" onerror="this.style.display='none'; document.getElementById('fallback').style.display='flex'">
-            <div id="fallback" class="logo-fallback" style="display: none;">🎮</div>
-            <span class="brand-name">ABTRIVIX</span>
-        </div>
-        <div class="nav-links">
-            <a href="#portfolio">Our Games</a>
-            <a href="privacy/">Privacy Policy</a>
+    <!-- ===== Nav ===== -->
+    <header id="site-header">
+        <div class="wrap nav">
+            <a href="#top" class="brand">
+                <img class="logo-img" src="logo.png" alt="Abtrivix logo" onerror="this.style.display='none';document.getElementById('lf').style.display='flex'">
+                <div id="lf" class="logo-fallback">🎮</div>
+                <span class="brand-name">ABTRIVIX</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#games">Games</a>
+                <a href="#why">Why Us</a>
+                <a href="#connect">Community</a>
+                <a href="privacy/">Privacy</a>
+            </nav>
+            <div class="nav-cta">
+                <a href="#connect" class="btn btn-ghost">Follow Us</a>
+                <a href="#games" class="btn btn-primary">Explore Games →</a>
+                <button class="hamburger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Area -->
-    <section class="hero">
-        <h1>Next-Gen Gaming & Puzzles</h1>
-        <p>Abtrivix designs premium interactive puzzles, strategic card challenges, and immersive mobile games. We challenge your instincts and train your brainpower.</p>
-        
-        <!-- Showcase Official Banner -->
-        <div class="banner-container">
-            <img class="banner-img" src="banner.jpg" alt="Abtrivix Gaming Universe">
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mmenu">
+        <button class="mobile-close" id="mclose" aria-label="Close menu">✕</button>
+        <a href="#games">Games</a>
+        <a href="#why">Why Us</a>
+        <a href="#connect">Community</a>
+        <a href="privacy/">Privacy Policy</a>
+        <a href="terms/">Terms of Service</a>
+        <div class="mobile-social">
+            <a href="https://www.facebook.com/profile.php?id=61591684252933" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+            <a href="https://www.youtube.com/channel/UCyx5hC2B_pry52u6T-oBnTw" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://x.com/abtrivix" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.7l7.9-9L1 2h7l4.8 6.4L18.9 2Zm-2.4 18h1.9L7.6 4H5.6l10.9 16Z"/></svg></a>
+            <a href="https://www.instagram.com/abtrivix?igsh=MWRsbDVzYWlnc3pzaQ==" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 3.2A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4Zm0 10.9A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3Zm6.9-11.1a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5Z"/></svg></a>
+        </div>
+    </div>
+
+    <!-- ===== Hero ===== -->
+    <a id="top"></a>
+    <section class="hero wrap">
+        <span class="eyebrow reveal"><span class="dot"></span> Indie Game Studio · Est. 2026</span>
+        <h1 class="reveal">Next-Gen <span class="glow-word">Gaming</span> &amp; Brain-Bending <span class="glow-word">Puzzles</span></h1>
+        <p class="reveal">Abtrivix crafts premium interactive puzzles, strategic challenges and immersive mobile games — server-less, local-first, and built to sharpen your instincts.</p>
+        <div class="hero-actions reveal">
+            <a href="#games" class="btn btn-primary">Explore the Universe →</a>
+            <a href="#connect" class="btn btn-ghost">Join the Community</a>
+        </div>
+
+        <div class="banner-wrap reveal">
+            <div class="banner-inner">
+                <img src="banner.jpg" alt="Abtrivix gaming universe banner">
+            </div>
+        </div>
+
+        <div class="marquee reveal">
+            <div class="marquee-track">
+                <span>Puzzle Games</span><span>Local Multiplayer</span><span>Sports Trivia</span><span>Zero Servers</span><span>Privacy First</span><span>Daily Challenges</span>
+                <span>Puzzle Games</span><span>Local Multiplayer</span><span>Sports Trivia</span><span>Zero Servers</span><span>Privacy First</span><span>Daily Challenges</span>
+            </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="section" id="portfolio">
-        <h2 class="section-title">Abtrivix Universe</h2>
+    <!-- ===== Stats ===== -->
+    <section class="block wrap">
+        <div class="stats">
+            <div class="stat reveal"><div class="num" data-count="4">0</div><div class="lbl">Games in the Lab</div></div>
+            <div class="stat reveal"><div class="num" data-count="100" data-suffix="%">0</div><div class="lbl">Privacy First</div></div>
+            <div class="stat reveal"><div class="num" data-count="0" data-suffix="+">0</div><div class="lbl">Trackers Used</div></div>
+            <div class="stat reveal"><div class="num" data-count="24" data-suffix="/7">0</div><div class="lbl">Offline Ready</div></div>
+        </div>
+    </section>
+
+    <!-- ===== Games ===== -->
+    <section class="block wrap" id="games">
+        <div class="section-head reveal">
+            <div class="tag">The Portfolio</div>
+            <h2>Abtrivix Universe</h2>
+            <p>A growing constellation of games engineered to challenge your logic, reflexes and knowledge.</p>
+        </div>
         <div class="games-grid">
-            
-            <!-- Game 1: WormGo -->
-            <div class="game-card">
+            <div class="game-card tilt reveal">
                 <span class="badge">COMING SOON</span>
                 <div class="game-icon">🐛</div>
                 <h3>WormGo</h3>
-                <p>Navigate complex mazes and guide your character through dynamic pathways. A precision-based arcade puzzle game inspired by action-routing mechanics.</p>
+                <p>Navigate complex mazes and guide your character through dynamic pathways. A precision-based arcade puzzle inspired by action-routing mechanics.</p>
             </div>
-
-            <!-- Game 2: Sudoku Multimode -->
-            <div class="game-card">
+            <div class="game-card tilt reveal">
                 <span class="badge">COMING SOON</span>
                 <div class="game-icon">🔢</div>
                 <h3>Sudoku Multimode</h3>
-                <p>The ultimate daily logic trainer. Experience multiple grid variations, classic puzzles, custom themes, and competitive logic challenges.</p>
+                <p>The ultimate daily logic trainer. Multiple grid variations, classic puzzles, custom themes and competitive logic challenges.</p>
             </div>
-
-            <!-- Game 3: Gravity Puzzle -->
-            <div class="game-card">
+            <div class="game-card tilt reveal">
                 <span class="badge">COMING SOON</span>
                 <div class="game-icon">🌌</div>
                 <h3>Gravity Puzzle</h3>
-                <p>Control elements, manipulate gravity fields, and interact with physics nodes to solve mind-bending three-dimensional spatial puzzles.</p>
+                <p>Control elements, manipulate gravity fields and interact with physics nodes to solve mind-bending three-dimensional spatial puzzles.</p>
             </div>
-
-            <!-- Game 4: Sports Guessing Series -->
-            <div class="game-card">
+            <div class="game-card tilt reveal">
                 <span class="badge">COMING SOON</span>
                 <div class="game-icon">🏆</div>
                 <h3>Sports Trivia Series</h3>
-                <p>Our dedicated series of trivia and sports guessing games, including cricket and football stats deduction boards, featuring local peer-to-peer multiplayer modes.</p>
+                <p>A dedicated series of trivia and sports guessing games — cricket &amp; football stats deduction boards with local peer-to-peer multiplayer.</p>
             </div>
-
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="copyright">
-            &copy; <span id="year">2026</span> Abtrivix. All rights reserved.
+    <!-- ===== Why ===== -->
+    <section class="block wrap" id="why">
+        <div class="section-head reveal">
+            <div class="tag">The Difference</div>
+            <h2>Why Players Love Abtrivix</h2>
+            <p>We build games the right way — fast, private, and endlessly replayable.</p>
         </div>
-        <div class="footer-links">
-            <a href="privacy/">Privacy Policy</a>
-            <a href="terms/">Terms of Service</a>
+        <div class="features">
+            <div class="feature reveal">
+                <div class="ficon">⚡</div>
+                <h4>Instant &amp; Offline</h4>
+                <p>Server-less, local-first architecture means zero load times and full offline play. Your game, always ready.</p>
+            </div>
+            <div class="feature reveal">
+                <div class="ficon">🔒</div>
+                <h4>Privacy by Design</h4>
+                <p>No accounts, no emails, no data harvesting. Your profiles and scores live on your device — never our servers.</p>
+            </div>
+            <div class="feature reveal">
+                <div class="ficon">📶</div>
+                <h4>Local Multiplayer</h4>
+                <p>Challenge friends over the same Wi-Fi with peer-to-peer party modes — no internet relay required.</p>
+            </div>
+            <div class="feature reveal">
+                <div class="ficon">🎯</div>
+                <h4>Crafted to Challenge</h4>
+                <p>Every puzzle is tuned to train your brain — from daily logic resets to competitive deduction boards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Social CTA ===== -->
+    <section class="block wrap" id="connect">
+        <div class="social-cta reveal">
+            <h2>Join the Abtrivix Community</h2>
+            <p>Follow us for launch dates, sneak peeks, dev updates and community challenges. Be the first to play.</p>
+            <div class="social-row">
+                <a class="social-btn fb" href="https://www.facebook.com/profile.php?id=61591684252933" target="_blank" rel="noopener" aria-label="Follow Abtrivix on Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+                <a class="social-btn yt" href="https://www.youtube.com/channel/UCyx5hC2B_pry52u6T-oBnTw" target="_blank" rel="noopener" aria-label="Subscribe to Abtrivix on YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+                <a class="social-btn x" href="https://x.com/abtrivix" target="_blank" rel="noopener" aria-label="Follow Abtrivix on X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.7l7.9-9L1 2h7l4.8 6.4L18.9 2Zm-2.4 18h1.9L7.6 4H5.6l10.9 16Z"/></svg></a>
+                <a class="social-btn ig" href="https://www.instagram.com/abtrivix?igsh=MWRsbDVzYWlnc3pzaQ==" target="_blank" rel="noopener" aria-label="Follow Abtrivix on Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 3.2A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4Zm0 10.9A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3Zm6.9-11.1a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5Z"/></svg></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        <div class="wrap">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#top" class="brand">
+                        <img class="logo-img" src="logo.png" alt="Abtrivix logo" onerror="this.style.display='none'">
+                        <span class="brand-name">ABTRIVIX</span>
+                    </a>
+                    <p>Next-gen mobile games, puzzles and trivia — crafted with obsession, powered by privacy.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.facebook.com/profile.php?id=61591684252933" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+                        <a href="https://www.youtube.com/channel/UCyx5hC2B_pry52u6T-oBnTw" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+                        <a href="https://x.com/abtrivix" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.7l7.9-9L1 2h7l4.8 6.4L18.9 2Zm-2.4 18h1.9L7.6 4H5.6l10.9 16Z"/></svg></a>
+                        <a href="https://www.instagram.com/abtrivix?igsh=MWRsbDVzYWlnc3pzaQ==" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 3.2A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4Zm0 10.9A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3Zm6.9-11.1a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5Z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>Explore</h5>
+                    <a href="#games">Our Games</a>
+                    <a href="#why">Why Us</a>
+                    <a href="#connect">Community</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <a href="privacy/">Privacy Policy</a>
+                    <a href="terms/">Terms of Service</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <a href="mailto:contact@abtrivix.com">contact@abtrivix.com</a>
+                    <a href="https://abtrivix.com">abtrivix.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; <span id="year">2026</span> Abtrivix. All rights reserved.</span>
+                <span>Crafted with ⚡ for players everywhere.</span>
+            </div>
         </div>
     </footer>
 
     <script>
+        // Year
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Header shadow on scroll
+        const header = document.getElementById('site-header');
+        addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 20));
+
+        // Mobile menu
+        const burger = document.getElementById('burger');
+        const mmenu = document.getElementById('mmenu');
+        const mclose = document.getElementById('mclose');
+        const openM = () => mmenu.classList.add('open');
+        const closeM = () => mmenu.classList.remove('open');
+        burger.addEventListener('click', openM);
+        mclose.addEventListener('click', closeM);
+        mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeM));
+
+        // Scroll reveal
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        // Animated counters
+        const counters = document.querySelectorAll('.num[data-count]');
+        const cio = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                const el = e.target;
+                const target = +el.dataset.count;
+                const suffix = el.dataset.suffix || '';
+                let cur = 0;
+                const step = Math.max(1, target / 40);
+                const tick = () => {
+                    cur += step;
+                    if (cur >= target) { el.textContent = target + suffix; }
+                    else { el.textContent = Math.floor(cur) + suffix; requestAnimationFrame(tick); }
+                };
+                tick();
+                cio.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => cio.observe(c));
+
+        // 3D tilt on game cards
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce && matchMedia('(hover: hover)').matches) {
+            document.querySelectorAll('.tilt').forEach(card => {
+                card.addEventListener('mousemove', (ev) => {
+                    const r = card.getBoundingClientRect();
+                    const x = (ev.clientX - r.left) / r.width - 0.5;
+                    const y = (ev.clientY - r.top) / r.height - 0.5;
+                    card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-6px)`;
+                });
+                card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+            });
+        }
+
+        // Constellation canvas
+        (function () {
+            if (reduce) return;
+            const c = document.getElementById('stars');
+            const ctx = c.getContext('2d');
+            let w, h, pts, raf;
+            const DPR = Math.min(devicePixelRatio || 1, 2);
+            function resize() {
+                w = c.width = innerWidth * DPR;
+                h = c.height = innerHeight * DPR;
+                c.style.width = innerWidth + 'px';
+                c.style.height = innerHeight + 'px';
+                const count = Math.min(90, Math.floor(innerWidth / 16));
+                pts = Array.from({ length: count }, () => ({
+                    x: Math.random() * w, y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.25 * DPR,
+                    vy: (Math.random() - 0.5) * 0.25 * DPR,
+                    r: (Math.random() * 1.6 + 0.6) * DPR
+                }));
+            }
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                for (let i = 0; i < pts.length; i++) {
+                    const p = pts[i];
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0 || p.x > w) p.vx *= -1;
+                    if (p.y < 0 || p.y > h) p.vy *= -1;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, 6.283);
+                    ctx.fillStyle = 'rgba(168,150,255,0.7)';
+                    ctx.fill();
+                    for (let j = i + 1; j < pts.length; j++) {
+                        const q = pts[j];
+                        const dx = p.x - q.x, dy = p.y - q.y;
+                        const dist = dx * dx + dy * dy;
+                        const max = (140 * DPR) ** 2;
+                        if (dist < max) {
+                            const o = (1 - dist / max) * 0.35;
+                            ctx.strokeStyle = `rgba(120,140,255,${o})`;
+                            ctx.lineWidth = DPR * 0.6;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+                        }
+                    }
+                }
+                raf = requestAnimationFrame(draw);
+            }
+            addEventListener('resize', () => { cancelAnimationFrame(raf); resize(); draw(); });
+            resize(); draw();
+        })();
     </script>
 </body>
 </html>

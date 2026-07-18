@@ -14,7 +14,7 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Oxanium:wght@600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #070910;
@@ -131,13 +131,9 @@
             font-size: 24px; background: var(--grad);
             box-shadow: 0 0 22px var(--glow);
         }
-        .brand-name {
-            font-family: 'Oxanium', sans-serif;
-            font-size: 1.6rem; font-weight: 800; letter-spacing: 1.5px;
-            background: linear-gradient(100deg, #c026d3, #a855f7 30%, #6366f1 62%, #22d3ee);
-            -webkit-background-clip: text; background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 14px rgba(168,85,247,0.35));
+        .brand-wordmark {
+            height: 30px; width: auto; display: block;
+            filter: drop-shadow(0 0 12px rgba(168,85,247,0.35));
         }
         .nav-links { display: flex; align-items: center; gap: 30px; }
         .nav-links a {
@@ -486,7 +482,7 @@
             <a href="#top" class="brand">
                 <img class="logo-img" src="logo.png" alt="Abtrivix logo" onerror="this.style.display='none';document.getElementById('lf').style.display='flex'">
                 <div id="lf" class="logo-fallback">🎮</div>
-                <span class="brand-name">ABTRIVIX</span>
+                <img class="brand-wordmark" src="wordmark.png" alt="ABTRIVIX">
             </a>
             <nav class="nav-links">
                 <a href="#games">Games</a>
@@ -640,7 +636,7 @@
                 <div class="footer-brand">
                     <a href="#top" class="brand">
                         <img class="logo-img" src="logo.png" alt="Abtrivix logo" onerror="this.style.display='none'">
-                        <span class="brand-name">ABTRIVIX</span>
+                        <img class="brand-wordmark" src="wordmark.png" alt="ABTRIVIX">
                     </a>
                     <p>Next-gen mobile games, puzzles and trivia — crafted with obsession, powered by privacy.</p>
                     <div class="footer-socials">

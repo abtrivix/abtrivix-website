@@ -520,6 +520,70 @@
             gap: 20px;
         }
 
+        /* Responsive Catalog Modal */
+        @media (max-width: 860px) {
+            .catalog-modal {
+                padding: 0;
+            }
+            .catalog-content {
+                max-height: 100vh;
+                height: 100%;
+                border-radius: 0;
+                border: none;
+                padding: 24px 20px;
+            }
+            .catalog-close {
+                top: 20px;
+                right: 20px;
+                width: 36px;
+                height: 36px;
+            }
+            .catalog-header {
+                padding-right: 45px;
+                margin-bottom: 20px;
+            }
+            .catalog-header h2 {
+                font-size: 1.6rem;
+            }
+            .catalog-header p {
+                font-size: 0.88rem;
+            }
+            .catalog-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            .catalog-search {
+                width: 100%;
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+            .catalog-filters {
+                overflow-x: auto;
+                padding-bottom: 6px;
+                width: 100%;
+                -webkit-overflow-scrolling: touch;
+                display: flex;
+                gap: 6px;
+            }
+            .catalog-filters::-webkit-scrollbar {
+                display: none;
+            }
+            .filter-tab {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                flex-shrink: 0;
+            }
+            .catalog-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .catalog-body {
+                padding-right: 0;
+            }
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--edge);

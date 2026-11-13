@@ -440,150 +440,6 @@
             color: var(--text-muted);
         }
 
-        /* Catalog Modal */
-        .catalog-modal {
-            position: fixed; inset: 0; z-index: 1000;
-            background: rgba(4, 6, 10, 0.85); backdrop-filter: blur(20px);
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-            padding: 20px;
-        }
-        .catalog-modal.open {
-            opacity: 1; pointer-events: auto;
-        }
-        .catalog-content {
-            background: rgba(13, 19, 33, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 50px rgba(168,85,247,0.15);
-            width: 100%; max-width: 1100px; height: 100%; max-height: 85vh;
-            border-radius: 28px; padding: 40px; display: flex; flex-direction: column;
-            position: relative; overflow: hidden;
-        }
-        .catalog-close {
-            position: absolute; top: 24px; right: 28px;
-            width: 40px; height: 40px; border-radius: 50%;
-            background: rgba(255,255,255,0.05); border: 1px solid var(--edge);
-            color: #fff; display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; cursor: pointer; transition: background 0.3s, transform 0.3s;
-            z-index: 1010;
-        }
-        .catalog-close:hover {
-            background: rgba(255,255,255,0.1); transform: rotate(90deg);
-        }
-        .catalog-header {
-            margin-bottom: 25px; text-align: left;
-        }
-        .catalog-header h2 {
-            font-size: 2.2rem; font-weight: 800; margin: 0 0 8px;
-            background: linear-gradient(120deg, #fff, #a5b4fc);
-            -webkit-background-clip: text; background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .catalog-header p {
-            color: var(--text-muted); margin: 0; font-size: 1rem;
-        }
-        .catalog-controls {
-            display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap;
-            align-items: center; justify-content: space-between;
-        }
-        .catalog-search {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--edge);
-            border-radius: 12px; padding: 12px 18px; color: #fff; font-size: 0.95rem;
-            width: 280px; transition: border-color 0.3s, box-shadow 0.3s;
-            outline: none;
-        }
-        .catalog-search:focus {
-            border-color: var(--cyan); box-shadow: 0 0 15px rgba(34,211,238,0.2);
-        }
-        .catalog-filters {
-            display: flex; gap: 8px;
-        }
-        .filter-tab {
-            padding: 8px 16px; border-radius: 8px; font-size: 0.88rem; font-weight: 600;
-            background: rgba(255,255,255,0.02); border: 1px solid var(--edge); color: var(--text-muted);
-            cursor: pointer; transition: all 0.3s;
-        }
-        .filter-tab.active, .filter-tab:hover {
-            background: var(--purple); color: #fff; border-color: var(--purple);
-            box-shadow: 0 4px 12px rgba(168,85,247,0.3);
-        }
-        .catalog-body {
-            overflow-y: auto; flex: 1; padding-right: 8px;
-        }
-        .catalog-body::-webkit-scrollbar { width: 6px; }
-        .catalog-body::-webkit-scrollbar-track { background: transparent; }
-        .catalog-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
-        .catalog-body::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
-
-        .catalog-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        /* Responsive Catalog Modal */
-        @media (max-width: 860px) {
-            .catalog-modal {
-                padding: 0;
-            }
-            .catalog-content {
-                max-height: 100vh;
-                height: 100%;
-                border-radius: 0;
-                border: none;
-                padding: 24px 20px;
-            }
-            .catalog-close {
-                top: 20px;
-                right: 20px;
-                width: 36px;
-                height: 36px;
-            }
-            .catalog-header {
-                padding-right: 45px;
-                margin-bottom: 20px;
-            }
-            .catalog-header h2 {
-                font-size: 1.6rem;
-            }
-            .catalog-header p {
-                font-size: 0.88rem;
-            }
-            .catalog-controls {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 12px;
-                margin-bottom: 20px;
-            }
-            .catalog-search {
-                width: 100%;
-                padding: 10px 14px;
-                font-size: 0.9rem;
-            }
-            .catalog-filters {
-                overflow-x: auto;
-                padding-bottom: 6px;
-                width: 100%;
-                -webkit-overflow-scrolling: touch;
-                display: flex;
-                gap: 6px;
-            }
-            .catalog-filters::-webkit-scrollbar {
-                display: none;
-            }
-            .filter-tab {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-                flex-shrink: 0;
-            }
-            .catalog-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-            .catalog-body {
-                padding-right: 0;
-            }
-        }
-
         /* Footer */
         footer {
             border-top: 1px solid var(--edge);
@@ -670,6 +526,7 @@
             </a>
             <nav class="nav-links">
                 <a href="#games">Games</a>
+                <a href="games/" target="_blank" rel="noopener">All Games</a>
                 <a href="#why">Why Us</a>
                 <a href="#connect">Community</a>
                 <a href="privacy/">Privacy</a>
@@ -686,6 +543,7 @@
     <div class="mobile-menu" id="mmenu">
         <button class="mobile-close" id="mclose" aria-label="Close menu">✕</button>
         <a href="#games">Games</a>
+        <a href="games/" target="_blank" rel="noopener">All Games (7)</a>
         <a href="#why">Why Us</a>
         <a href="#connect">Community</a>
         <a href="privacy/">Privacy Policy</a>
@@ -717,8 +575,8 @@
 
         <div class="marquee reveal">
             <div class="marquee-track">
-                <span>Puzzle Games</span><span>Local Multiplayer</span><span>Sports Trivia</span><span>Zero Servers</span><span>Privacy First</span><span>Daily Challenges</span>
-                <span>Puzzle Games</span><span>Local Multiplayer</span><span>Sports Trivia</span><span>Zero Servers</span><span>Privacy First</span><span>Daily Challenges</span>
+                <span>Word Games</span><span>Online Battles</span><span>Puzzle Games</span><span>Local Multiplayer</span><span>Sports Trivia</span><span>Zero Servers</span><span>Privacy First</span><span>Daily Challenges</span>
+                <span>Word Games</span><span>Online Battles</span><span>Puzzle Games</span><span>Local Multiplayer</span><span>Sports Trivia</span><span>Zero Servers</span><span>Privacy First</span><span>Daily Challenges</span>
             </div>
         </div>
     </section>
@@ -726,7 +584,7 @@
     <!-- ===== Stats ===== -->
     <section class="block wrap">
         <div class="stats">
-            <div class="stat reveal"><div class="num" data-count="6">0</div><div class="lbl">Games in the Lab</div></div>
+            <div class="stat reveal"><div class="num" data-count="7">0</div><div class="lbl">Games in the Lab</div></div>
             <div class="stat reveal"><div class="num" data-count="100" data-suffix="%">0</div><div class="lbl">Privacy First</div></div>
             <div class="stat reveal"><div class="num" data-count="0" data-suffix="+">0</div><div class="lbl">Trackers Used</div></div>
             <div class="stat reveal"><div class="num" data-count="24" data-suffix="/7">0</div><div class="lbl">Offline Ready</div></div>
@@ -754,6 +612,24 @@
                         Google Play
                     </a>
                     <a href="https://apps.apple.com/us/app/wormgo/id6799508225" target="_blank" rel="noopener" class="store-btn appstore">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></svg>
+                        App Store
+                    </a>
+                </div>
+            </div>
+            <div class="game-card tilt reveal">
+                <span class="badge live">LIVE NOW</span>
+                <div class="game-icon">
+                    <img src="wordslam.png" alt="Word Slam: Online Multiplayer logo">
+                </div>
+                <h3>Word Slam: Online Multiplayer</h3>
+                <p>The fast-paced 4-letter word card game! Think fast, slam your letter cards, and transform words before your opponent does in real-time 1v1 battles, 100-level campaign, and offline modes.</p>
+                <div class="store-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.abtrivix.slam" target="_blank" rel="noopener" class="store-btn gplay">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"/></svg>
+                        Google Play
+                    </a>
+                    <a href="https://apps.apple.com/in/app/word-slam-online-multiplayer/id6811384210" target="_blank" rel="noopener" class="store-btn appstore">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></svg>
                         App Store
                     </a>
@@ -795,30 +671,12 @@
                     </a>
                 </div>
             </div>
-            <div class="game-card tilt reveal">
-                <span class="badge live">LIVE NOW</span>
-                <div class="game-icon">
-                    <img src="iplguess.png" alt="Guess The Player: IPL Edition logo">
-                </div>
-                <h3>Guess The Player: IPL Edition</h3>
-                <p>Welcome to Guess the Player: IPL Edition – the ultimate daily cricket trivia and guessing game designed for true IPL fans!</p>
-                <div class="store-buttons">
-                    <a href="https://play.google.com/store/apps/details?id=com.abtrivix.gtp.iplguess" target="_blank" rel="noopener" class="store-btn gplay">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"/></svg>
-                        Google Play
-                    </a>
-                    <a href="https://apps.apple.com/us/app/guess-the-player-ipl-edition/id6799184155" target="_blank" rel="noopener" class="store-btn appstore">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></svg>
-                        App Store
-                    </a>
-                </div>
-            </div>
         </div>
         <div class="games-more-action reveal" style="text-align: center; margin-top: 50px;">
-            <button id="btn-open-catalog" class="btn btn-ghost" style="padding: 14px 32px; font-size: 1rem; gap: 10px; cursor: pointer;">
-                <span>Explore Full Catalog (6 Games)</span>
-                <span style="font-size: 1.1rem;">⚡</span>
-            </button>
+            <a href="games/" target="_blank" rel="noopener" class="btn btn-primary" style="padding: 15px 36px; font-size: 1.05rem; gap: 12px; text-decoration: none;">
+                <span>View All Games (7 Games)</span>
+                <span style="font-size: 1.2rem;">→</span>
+            </a>
         </div>
     </section>
 
@@ -867,145 +725,6 @@
         </div>
     </section>
 
-    <!-- ===== Games Catalog Modal ===== -->
-    <div id="catalog-modal" class="catalog-modal">
-        <div class="catalog-content">
-            <button id="btn-close-catalog" class="catalog-close" aria-label="Close catalog">✕</button>
-            <div class="catalog-header">
-                <h2>Abtrivix Games Catalog</h2>
-                <p>Browse our complete list of premium, private, and local-first games.</p>
-            </div>
-            <div class="catalog-controls">
-                <input type="text" id="catalog-search" class="catalog-search" placeholder="Search games...">
-                <div class="catalog-filters">
-                    <button class="filter-tab active" data-filter="all">All</button>
-                    <button class="filter-tab" data-filter="puzzle">Puzzle</button>
-                    <button class="filter-tab" data-filter="arcade">Arcade</button>
-                    <button class="filter-tab" data-filter="trivia">Trivia</button>
-                    <button class="filter-tab" data-filter="logic">Logic</button>
-                </div>
-            </div>
-            <div class="catalog-body">
-                <div class="catalog-grid">
-                    <!-- Game 1: WormGo -->
-                    <div class="game-card" data-category="arcade" data-name="wormgo">
-                        <span class="badge live">LIVE NOW</span>
-                        <div class="game-icon">
-                            <img src="wormgo.png" alt="WormGo logo">
-                        </div>
-                        <h3>WormGo</h3>
-                        <p>The board is packed edge-to-edge with tangled, colorful worms. Slide each worm forward to set them free in the right order, untangle the board, and clear the level!</p>
-                        <div class="store-buttons">
-                            <a href="https://play.google.com/store/apps/details?id=com.abtrivix.wormgo" target="_blank" rel="noopener" class="store-btn gplay">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"/></svg>
-                                Google Play
-                            </a>
-                            <a href="https://apps.apple.com/us/app/wormgo/id6799508225" target="_blank" rel="noopener" class="store-btn appstore">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></svg>
-                                App Store
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Game 2: TETHER -->
-                    <div class="game-card" data-category="arcade" data-name="tether">
-                        <span class="badge live">LIVE NOW</span>
-                        <div class="game-icon">
-                            <img src="tether.png" alt="TETHER logo">
-                        </div>
-                        <h3>TETHER</h3>
-                        <p>TETHER is a one-tap rope physics game about a fragile ball of plasma in a cave full of things that want it dead. There is no run button, no jump, no second chance. There is a rope, a swing, and the instant you let go.</p>
-                        <div class="store-buttons">
-                            <a href="https://play.google.com/store/apps/details?id=com.abtrivix.tether" target="_blank" rel="noopener" class="store-btn gplay">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"/></svg>
-                                Google Play
-                            </a>
-                            <a href="https://apps.apple.com/us/app/tether-gravity-puzzle/id6807263133" target="_blank" rel="noopener" class="store-btn appstore">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></svg>
-                                App Store
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Game 3: Sudoku Multimode -->
-                    <div class="game-card" data-category="logic" data-name="sudoku multimode">
-                        <span class="badge live">LIVE NOW</span>
-                        <div class="game-icon">
-                            <img src="sudoku.png" alt="Sudoku Multimode logo">
-                        </div>
-                        <h3>Sudoku Multimode</h3>
-                        <p>The ultimate daily logic trainer. Multiple grid variations, classic puzzles, custom themes and competitive logic challenges.</p>
-                        <div class="store-buttons">
-                            <a href="https://play.google.com/store/apps/details?id=com.abtrivix.sudoku.sudoku_multimode" target="_blank" rel="noopener" class="store-btn gplay">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"/></svg>
-                                Google Play
-                            </a>
-                            <a href="https://apps.apple.com/us/app/sudoku-multimode/id6799971103" target="_blank" rel="noopener" class="store-btn appstore">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></svg>
-                                App Store
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Game 4: DRIFT -->
-                    <div class="game-card" data-category="puzzle" data-name="drift: cosmic gravity puzzle">
-                        <span class="badge live">LIVE NOW</span>
-                        <div class="game-icon">
-                            <img src="drift.png" alt="DRIFT logo">
-                        </div>
-                        <h3>DRIFT: Cosmic Gravity Puzzle</h3>
-                        <p>DRIFT is a turn-based gravity sliding puzzle. Plan your path, shift gravity, collect crystals, and navigate ice floors, fragile tiles, and one-way gates to reach the portal in the fewest moves!</p>
-                        <div class="store-buttons">
-                            <a href="https://play.google.com/store/apps/details?id=com.abtrivix.drift" target="_blank" rel="noopener" class="store-btn gplay">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"/></svg>
-                                Google Play
-                            </a>
-                            <a href="https://apps.apple.com/us/app/drift-cosmic-gravity-puzzle/id6803600213" target="_blank" rel="noopener" class="store-btn appstore">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></svg>
-                                App Store
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Game 5: Guess The Player -->
-                    <div class="game-card" data-category="trivia" data-name="guess the player: ipl edition">
-                        <span class="badge live">LIVE NOW</span>
-                        <div class="game-icon">
-                            <img src="iplguess.png" alt="Guess The Player: IPL Edition logo">
-                        </div>
-                        <h3>Guess The Player: IPL Edition</h3>
-                        <p>Welcome to Guess the Player: IPL Edition – the ultimate daily cricket trivia and guessing game designed for true IPL fans!</p>
-                        <div class="store-buttons">
-                            <a href="https://play.google.com/store/apps/details?id=com.abtrivix.gtp.iplguess" target="_blank" rel="noopener" class="store-btn gplay">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"/></svg>
-                                Google Play
-                            </a>
-                            <a href="https://apps.apple.com/us/app/guess-the-player-ipl-edition/id6799184155" target="_blank" rel="noopener" class="store-btn appstore">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></svg>
-                                App Store
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Game 6: Snake Puzzle -->
-                    <div class="game-card" data-category="arcade" data-name="snake puzzle: apple eater">
-                        <span class="badge live">LIVE NOW</span>
-                        <div class="game-icon">
-                            <img src="snakepuzzle.jpg" alt="Snake Puzzle: Apple Eater logo">
-                        </div>
-                        <h3>Snake Puzzle: Apple Eater</h3>
-                        <p>Snake Puzzle: Apple Eater is a turn-based puzzle twist on the classic snake game. Plan your moves, collect every apple, activate the portal, and escape before time runs out!</p>
-                        <div class="store-buttons">
-                            <a href="https://play.google.com/store/apps/details?id=com.abtrivix.snakepuzzle.appleeater" target="_blank" rel="noopener" class="store-btn gplay">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"/></svg>
-                                Google Play
-                            </a>
-                            <a href="https://apps.apple.com/in/app/snake-puzzle-apple-eater/id6804364843" target="_blank" rel="noopener" class="store-btn appstore">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></svg>
-                                App Store
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ===== Footer ===== -->
     <footer>
         <div class="wrap">
@@ -1025,7 +744,8 @@
                 </div>
                 <div class="footer-col">
                     <h5>Explore</h5>
-                    <a href="#games">Our Games</a>
+                    <a href="#games">Featured Games</a>
+                    <a href="games/" target="_blank" rel="noopener">All Games (7)</a>
                     <a href="#why">Why Us</a>
                     <a href="#connect">Community</a>
                 </div>
@@ -1064,64 +784,6 @@
         burger.addEventListener('click', openM);
         mclose.addEventListener('click', closeM);
         mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeM));
-
-        // Catalog Modal Logic
-        const btnOpenCatalog = document.getElementById('btn-open-catalog');
-        const btnCloseCatalog = document.getElementById('btn-close-catalog');
-        const catalogModal = document.getElementById('catalog-modal');
-        const catalogSearch = document.getElementById('catalog-search');
-        const filterTabs = document.querySelectorAll('.filter-tab');
-        const catalogCards = document.querySelectorAll('#catalog-modal .game-card');
-
-        const openCatalog = () => {
-            catalogModal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        };
-
-        const closeCatalog = () => {
-            catalogModal.classList.remove('open');
-            document.body.style.overflow = '';
-        };
-
-        btnOpenCatalog.addEventListener('click', openCatalog);
-        btnCloseCatalog.addEventListener('click', closeCatalog);
-        
-        catalogModal.addEventListener('click', (e) => {
-            if (e.target === catalogModal) closeCatalog();
-        });
-
-        // Filter and Search Logic
-        let activeFilter = 'all';
-        let searchQuery = '';
-
-        const updateCatalogGrid = () => {
-            catalogCards.forEach(card => {
-                const name = card.dataset.name.toLowerCase();
-                const category = card.dataset.category.toLowerCase();
-                const matchesSearch = name.includes(searchQuery);
-                const matchesFilter = activeFilter === 'all' || category === activeFilter;
-
-                if (matchesSearch && matchesFilter) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        };
-
-        catalogSearch.addEventListener('input', (e) => {
-            searchQuery = e.target.value.toLowerCase().trim();
-            updateCatalogGrid();
-        });
-
-        filterTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                filterTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                activeFilter = tab.dataset.filter.toLowerCase();
-                updateCatalogGrid();
-            });
-        });
 
         // Scroll reveal
         const io = new IntersectionObserver((entries) => {
